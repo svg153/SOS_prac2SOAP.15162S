@@ -94,11 +94,9 @@ public class UserManagementWSClient {
 		System.out.println(res+"\n");
 		
 		
-		System.out.print("User:Admin. Borra usuario PEPE...  ");
-		jose.setName("jose");
-		jose.setPwd("jose");
+		System.out.print("User:Admin. Borra usuario JOSE...  ");
 		Username username2 = new Username();
-		username2.setUsername("jose_2");
+		username2.setUsername("jose");
 		response = stub.removeUser(username2);
 		res = response.getResponse();
 		System.out.println(res+"\n");
