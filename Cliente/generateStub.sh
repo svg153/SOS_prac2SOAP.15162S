@@ -1,0 +1,1 @@
+/home/svg153/REPOSITORIOS/SOS-Proyecto2/Client/generateStub.sh
