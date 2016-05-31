@@ -17,29 +17,51 @@ public class UserManagementWSClient {
         stub._getServiceClient().getOptions().setManageSession(true);
 
         
+        
+        //
+        // VARS
+        //
+        
+        User admin = new User();
+        admin.setName("admin");
+        admin.setName("admin");
+        Username adminUsername = new Username();
+        adminUsername.setUsername("admin");
+        
+        User paco = new User();
+        admin.setName("paco");
+        admin.setName("paco");
+        Username pacoUsername = new Username();
+        pacoUsername.setUsername("paco");
+        
         //
         // PRUEBAS
         //
         
 		System.out.print("login with admin...  ");
-		User admin = new User();
-		admin.setName("admin");
-		admin.setPwd("admin");
 		response = stub.login(admin);
 		res = response.getResponse();
 		System.out.print(res);
 		System.out.println("\n");
 		
+		System.out.println("Un vez echo el login, intentamos cambiar la contraseña... TRUE =?=... ");
+		PasswordPair passwordPair5 = new PasswordPair();
+		passwordPair5.setOldpwd("admin");
+		passwordPair5.setNewpwd("admin2");	
+		response = stub.changePassword(passwordPair5);
+		res = response.getResponse();
+		System.out.println(res+"\n");
 		
 		System.out.print("logout with admin...  ");
 		stub.logout();
 		System.out.println("\n");
 		
+		System.out.print("login con admin...  FALSE =?=...");
+		response = stub.login(admin);
+		res = response.getResponse();
+		System.out.println(res+"\n");
 		
-		System.out.print("Un vez echo el logout, intentamos cambiar la contraseña... FALSE =?=... ");
-		PasswordPair passwordPair5 = new PasswordPair();
-		passwordPair5.setOldpwd("admin");
-		passwordPair5.setNewpwd("admin2");		
+		System.out.print("logout, intentamos cambiar la contraseña... FALSE =?=... ");
 		response = stub.changePassword(passwordPair5);
 		res = response.getResponse();
 		System.out.println(res+"\n");
@@ -48,24 +70,6 @@ public class UserManagementWSClient {
 		System.out.print("logout con admin...  ");
 		stub.logout();
 		System.out.println("\n");
-
-		
-		System.out.print("login con admin...  ");
-		response = stub.login(admin);
-		res = response.getResponse();
-		System.out.println(res+"\n");
-		
-		
-		System.out.println("Un vez echo el login, intentamos cambiar la contraseña...  ");
-		System.out.print("deberia salir TRUE... ");
-		response = stub.changePassword(passwordPair5);
-		res = response.getResponse();
-		System.out.println(res+"\n");
-		
-		
-		System.out.print("logout de admin...  ");
-		stub.logout();
-		System.out.println("");
 		
 		
 		System.out.print("login con admin con su nueva contrasena...  ");
@@ -76,7 +80,8 @@ public class UserManagementWSClient {
 		res = response.getResponse();
 		System.out.println(res+"\n");
 		
-		System.out.print("User:Admin. Crea un nuevo usuario PEPE...  ");
+		
+		System.out.print("User:Admin. Crea un nuevo usuario PEPE... TRUE =?=... ");
 		User pepe = new User();
 		pepe.setName("pepe");
 		pepe.setPwd("pepe");
@@ -85,7 +90,7 @@ public class UserManagementWSClient {
 		System.out.println(res+"\n");
 		
 		
-		System.out.print("User:Admin. Crea un nuevo usuario JOSE...  ");
+		System.out.print("User:Admin. Crea un nuevo usuario JOSE... TRUE =?=... ");
 		User jose = new User();
 		jose.setName("jose");
 		jose.setPwd("jose");
@@ -94,12 +99,46 @@ public class UserManagementWSClient {
 		System.out.println(res+"\n");
 		
 		
-		System.out.print("User:Admin. Borra usuario JOSE...  ");
+		System.out.print("User:Admin. Crea un nuevo usuario PEPE existente... FALSE =?=... ");
+		response = stub.addUser(pepe);
+		res = response.getResponse();
+		System.out.println(res+"\n");
+		
+		
+		System.out.print("User:Admin. Borra usuario JOSE... TRUE =?=... ");
 		Username username2 = new Username();
 		username2.setUsername("jose");
 		response = stub.removeUser(username2);
 		res = response.getResponse();
 		System.out.println(res+"\n");
+		
+		
+		System.out.print("logout con admin...  ");
+		stub.logout();
+		System.out.println("\n");
+		
+		
+		System.out.print("User:JOSE. login JOSE... TRUE =?=... ");
+		response = stub.login(pepe);
+		res = response.getResponse();
+		System.out.println(res+"\n");
+		
+		
+		System.out.print("User:JOSE. addUser PACO... FALSE =?=... ");
+		response = stub.addUser(pepe);
+		res = response.getResponse();
+		System.out.println(res+"\n");
+		
+		System.out.print("User:JOSE. addUser ADMIN... FALSE =?=... ");
+		response = stub.addUser(admin);
+		res = response.getResponse();
+		System.out.println(res+"\n");
+		
+		System.out.print("User:JOSE. removeUser ADMINUSERNAME... FALSE =?=... ");
+		response = stub.removeUser(adminUsername);
+		res = response.getResponse();
+		System.out.println(res+"\n");
+		
 		
 		
 		
