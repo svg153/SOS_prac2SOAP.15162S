@@ -45,11 +45,9 @@ Si no se tienen tiene que instalarlas por su cuenta:
 
 ## run.sh y runMV.sh
 
-> NOTA: si se hace la práctica en la máquina virtual, donde aparezca run.sh, hay poner runMV.sh.
-
-> CUDIADO: El código de ambos scripts no están depurados completamentes, tratarlos con cautela. Se adminten pulls ;).
-
-> CUIDADO: si se usa el script 'run.sh' hay que cambiar algunas cosas antes de ejecutar, principalmente variables con los dirrectorios que usted esté utilizando. Mirar todo el código.
+> IMPORTANTE: si se hace la práctica en la máquina virtual, donde aparezca run.sh, hay poner runMV.sh.
+> * CUDIADO: El código de ambos scripts no están depurados completamentes, tratarlos con cautela. Se adminten pulls ;).
+> * CUIDADO: si se usa el script 'run.sh' hay que cambiar algunas cosas antes de ejecutar, principalmente variables con los dirrectorios que usted esté utilizando. Mirar todo el código.
 
 ### Inicio
 
