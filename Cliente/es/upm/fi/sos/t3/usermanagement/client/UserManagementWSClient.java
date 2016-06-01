@@ -4,13 +4,21 @@ import java.rmi.RemoteException;
 import es.upm.fi.sos.t3.usermanagement.client.UserManagementWSStub.*;
 
 public class UserManagementWSClient {
+	
+	static Response response;
+	static UserManagementWSStub stub; 
+	
+	
+	
+	
 	public static void main(String[] args) throws RemoteException {
 		
-		Response response;
-        boolean res;
+		
+		boolean res;
+		
 		
 		// creamos el stub
-		UserManagementWSStub stub = new UserManagementWSStub();
+		stub = new UserManagementWSStub();
 		
 		// hacemos que el stub mantega la conexion
         stub._getServiceClient().engageModule("addressing");
@@ -24,13 +32,13 @@ public class UserManagementWSClient {
         
         User admin = new User();
         admin.setName("admin");
-        admin.setName("admin");
+        admin.setPwd("admin");
         Username adminUsername = new Username();
         adminUsername.setUsername("admin");
         
         User paco = new User();
-        admin.setName("paco");
-        admin.setName("paco");
+        paco.setName("paco");
+        paco.setPwd("paco");
         Username pacoUsername = new Username();
         pacoUsername.setUsername("paco");
         
@@ -38,7 +46,7 @@ public class UserManagementWSClient {
         // PRUEBAS
         //
         
-		System.out.print("login with admin...  ");
+		System.out.print("login with admin... TRUE =?=... ");
 		response = stub.login(admin);
 		res = response.getResponse();
 		System.out.print(res);
@@ -56,7 +64,7 @@ public class UserManagementWSClient {
 		stub.logout();
 		System.out.println("\n");
 		
-		System.out.print("login con admin...  FALSE =?=...");
+		System.out.print("login con admin Old...  FALSE =?=...");
 		response = stub.login(admin);
 		res = response.getResponse();
 		System.out.println(res+"\n");
@@ -72,7 +80,7 @@ public class UserManagementWSClient {
 		System.out.println("\n");
 		
 		
-		System.out.print("login con admin con su nueva contrasena...  ");
+		System.out.print("login con admin con su nueva contrasena...  TRUE =?=.. ");
 		User admin2 = new User();
 		admin2.setName(admin.getName());
 		admin2.setPwd("admin2");
@@ -143,4 +151,20 @@ public class UserManagementWSClient {
 		
 		
 	}
+	
+	
+	
+	//
+	// FUNCs
+	//
+	
+	/**
+	 * 
+	 */
+	
+	
+	
+	
+	
+	
 }
