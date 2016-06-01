@@ -5,7 +5,7 @@
 # >>>>>>> VAR SCRIPTS
 ################################################
 
-VERSION=0.2
+VERSION=0.1
 NAME=$(basename $0)
 NM=$0
 AUTHOR="@svg153 (based on garquiscript.sh by @mrgarri)"
@@ -289,12 +289,12 @@ case "$1" in
         ;;
     "$U")
 #@TODO: Hacer la funcion
-    	mostrar_uso
+    	actualizar
     	exit 0
         ;;
     "$UPD")
 #@TODO: Hacer la funcion
-    	mostrar_ayuda
+    	actualizar
     	exit 0
         ;;
     "$WJ" | "$WSDL2JAVA")
