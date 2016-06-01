@@ -5,7 +5,7 @@
 # >>>>>>> VAR SCRIPTS
 ################################################
 
-VERSION=0.1
+VERSION=0.2
 NAME=$(basename $0)
 NM=$0
 AUTHOR="@svg153 (based on garquiscript.sh by @mrgarri)"
@@ -14,7 +14,7 @@ CUR_DIR="$(pwd)"
 bold=`tput bold`
 normal=`tput sgr0`
 
-UPDATE_source=
+UPDATE_source=https://raw.githubusercontent.com/svg153/SOS_prac2SOAP.15162S/master/runMV.sh
 
 
 H="-h"
@@ -23,13 +23,6 @@ V="-v"
 VER="--version"
 U="-u"
 UPD="--update"
-UP="-up"
-DESPLEGAR="--desplegar"
-SDW="-sd"
-APAGAR="--apagar"
-ENT="-ent"
-ENTREGA="--entrega"
-
 
 
 function mostrar_descargando {
@@ -58,10 +51,10 @@ function actualizar {
 	chmod $OCTAL_MODE $CUR_DIR/$NAME.tmp
 	# Overwrite old file with new
 	mv -f $CUR_DIR/$NAME.tmp $NAME
-	
+
 	if [[ $? == 0 ]]
 		then
-			
+
 			NEWVER=$(head ${NM} | grep "VERSION=" | sed 's/[^0-9.]//g')
 			if [[ $NEWVER != $VERSION ]]
 				then
@@ -86,17 +79,17 @@ function mostrar_ayuda {
 	printf "\n"
 	texto_uso
 	printf "\n"
-	
+
 	printf "OPCIONES:\n"
 		print_opciones
 		printf "\n"
-		
+
 	printf "Otras opciones:\n"
 		print_otras_opciones
 		printf "\n"
-	
+
 	printf "You can ask my cat now how this script works and she'll just meaow you.\n"
-	printf "\n"	
+	printf "\n"
 }
 
 
@@ -110,9 +103,14 @@ function print_otras_opciones {
 # <<<<<<< VAR SCRIPTS
 ################################################
 
-
 WJ="-wj"
 WSDL2JAVA="--wsdl2java"
+UP="-up"
+DESPLEGAR="--desplegar"
+SDW="-sd"
+APAGAR="--apagar"
+ENT="-ent"
+ENTREGA="--entrega"
 
 PATHBASE=/home/lsduser/software2015_linux
 
@@ -160,7 +158,7 @@ ARR_PATH=""
 
 
 function texto_uso {
-	printf "Usage:  ${bold}$0 { $H | $HELP | $WJ | $WSDL2JAVA | $UP | $DESPLEGAR | $SDW | $APAGAR }${normal}\n"
+	printf "Usage:  ${bold}$0 { $H | $HELP | $WJ | $WSDL2JAVA | $UP | $DESPLEGAR | $SDW | $APAGAR | $ENT | $ENTREGA }${normal}\n"
 }
 
 function mostrar_uso {
@@ -192,7 +190,7 @@ function wsdl2java_func {
 	read $JAVA_PROYECT_PATH
     printf "Write the java package name: \n"
 	read $JAVA_NAME
-	
+
 	cd $JAVA_PROYECT_PATH
 	$AXIS2_HOME/bin/wsdl2java.sh -s -ss -sd -wv 2.0 -p $JAVA_PROYECT_PATH/$JAVA_NAME -d adb -uri $WSDL_PATH
 #   /home/svg153/PROGRAMAS/axis2-1.7.1
@@ -206,7 +204,7 @@ function wsdl2java_func {
 
 function crearPaqueteAAR {
 
-       
+
 	if [[ $JAVA_PROYECT_PATH == "" || $JAVA_NAME == "" ]] ; then
         crearPaqueteAAR_IMPUT
 	else
@@ -231,10 +229,10 @@ function desplegarAAR {
 
 function montarAPP {
   	printf "wsdl2java: Create a sketelon from WSDL file\n"
-  	
+
   	# Crear el paquete para desplegar
   	crearPaqueteAAR
-  	
+
   	# Desplegar el servicio
   	desplegarAAR
 }
@@ -242,8 +240,8 @@ function montarAPP {
 
 function generarStub {
   	printf "generarStub: genera el stub para el cliente\n"
-  	
-  	
+
+
   	printf "wsdl2java: Create a sketelon from WSDL file\n"
 	printf "Write the complete path of WSDL file: \n"
 	read $WSDL_PATH
@@ -251,8 +249,8 @@ function generarStub {
 	read $JAVA_PROYECT_PATH
     printf "Write the java package name: \n"
 	read $JAVA_NAME
-	
-	
+
+
 	cd $JAVA_PROYECT_PATH
 	$AXIS2_HOME/bin/wsdl2java.sh -uri $WSDL_PATH -wv 2.0 -p $JAVA_NAME -d adb
     #TODO: control de errores de AXIS" wsdl2java.sh
@@ -307,8 +305,8 @@ case "$1" in
         source ~/.bashrc
         echo "Paramos axis2..."
         $CATALINA_HOME/bin/shutdown.sh
-        
-        
+
+
 #        activo=$(ps -aux | grep axis2 | wc -l)
 #        echo $activo
 #        if [ $activo > 0 ]; then
@@ -325,7 +323,7 @@ case "$1" in
         echo "Crearmos el fichero echo '$JAVA_NAME.aar'"
         ant
         # TODO mirar que se hizo bien en caso contrario no avanzar
-        
+
         cd ..
         #desplegarAAR_DEFECTO
 
@@ -337,7 +335,7 @@ case "$1" in
         cp $ARR_PATH $CATALINA_HOME/webapps/axis2/WEB-INF/services/$JAVA_NAME.aar
         echo "Arrancamos axis2..."
         $CATALINA_HOME/bin/startup.sh
-        
+
         # TODO solo cuando no este una ventana ya abierta
 #        gnome-terminal --title="logTomcatTerminal" --command="tail -f --lines=20 $CATALINA_HOME/logs/catalina.out"
 #        gnome-terminal --title="logTomcatDebbugTerminal" --command="tail -f --lines=20 $CATALINA_HOME/logs/catalina.out | grep --line-buffered 'DEBBUG'"
@@ -354,7 +352,7 @@ case "$1" in
 
         # Ejercutar el JAVA del cliente
         cd Cliente
-        # javac 
+        # javac
 
 
         cd ..
@@ -362,7 +360,7 @@ case "$1" in
         ;;
      "$SDW" | "$APAGAR")
         $CATALINA_HOME/bin/shutdown.sh
-        
+
 #        LOG=
 #        export LOG
 #        source ~/.bashrc
@@ -371,42 +369,41 @@ case "$1" in
 
         exit 0
         ;;
-	
+
 	"$ENT" | "$ENTREGA")
-      
- 
-        # @CHANGE: cambiar por los nombres de os user
-        NAMEENTREGA="garde"
-        
+
+		# pedimos al user el nombre de la carpeta
+		echo "Introduccior el primer apellido de cada autor. Ejemplo: Pepe Garcia y Jose Perez --> garciaperez"
+		read NAMEENTREGA
+
         if [ -d "$NAMEENTREGA" ]; then
-            rm -r ./$NAMEENTREGA
+            rm -r $NAMEENTREGA
         fi
-        
+
         mkdir $NAMEENTREGA
-        
+
         JAVA_NAME="UserManagementWS"
         ARR_PATH="/home/lsduser/workspace/Servicio/build/lib/$JAVA_NAME.aar"
         cp $ARR_PATH ./$NAMEENTREGA/$JAVA_NAME.aar
-        
+
         # @CHANGE: por otro user
         cp -r ./Servicio ./$NAMEENTREGA/servicio
         cp -r ./Cliente ./$NAMEENTREGA/cliente
-        
+
         cp /home/lsduser/workspace/Servicio/src/UserManagement/UserManagementWSSkeleton.java ./$NAMEENTREGA/UserManagementWSSkeleton.java
 
         rm "$NAMEENTREGA.rar"
-            
+
         rar a -r -c- $NAMEENTREGA.rar ./$NAMEENTREGA/
-        
-        #rm -r ./$NAMEENTREGA
+
+        rm -r $NAMEENTREGA
 
 
         exit 0
         ;;
-        
+
      *)
         mostrar_ayuda
         exit 0
-        
-esac
 
+esac
