@@ -5,7 +5,7 @@
 # >>>>>>> VAR SCRIPTS
 ################################################
 
-VERSION=0.1
+VERSION=0.2
 NAME=$(basename $0)
 NM=$0
 AUTHOR="@svg153 (based on garquiscript.sh by @mrgarri)"
@@ -14,7 +14,7 @@ CUR_DIR="$(pwd)"
 bold=`tput bold`
 normal=`tput sgr0`
 
-UPDATE_source=
+UPDATE_source=https://raw.githubusercontent.com/svg153/SOS_prac2SOAP.15162S/master/run.sh
 
 
 H="-h"
@@ -375,8 +375,7 @@ case "$1" in
 
       "$ENT" | "$ENTREGA")
 
-
-        # @CHANGE: cambiar por los nombres de los user
+	  	# pedimos al user el nombre de la carpeta
 		echo "Introduccior el primer apellido de cada autor. Ejemplo: Pepe Garcia y Jose Perez --> garciaperez"
 		read NAMEENTREGA
 
