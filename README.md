@@ -18,27 +18,40 @@ Cliente de la práctica 2 (Curso 2015-2016, 2º Semestre) de Sistemas Orientados
 Implementar el servicio y el cliente partiendo del WSDL dado para la practica de la asignatura.
 
 ## Dependencias
+Si no se tienen tiene que instalarlas por su cuenta:
 * JDK1.7.0_75
 * Ant 1.9.4
 * Tomcat 7.0.59
 * Axis2-1.6.2
-* rar
+* rar (se explica mas abajo como instalarla)
 
+## TODOs
+* Muchos...
 
 ## Archivos de la carpeta
 * **UserManagement.wsdl**: Con la descripción del servicio.
 * **UserManagementWSClient.java**: Código con el cliente que prueba el servicio.
 * **generateStub.sh**: Script bash que genera el codigo del cliente, partiendo del *UserManagement.wsdl* que se tiene que encontrar en la misma carpeta y teniendo instalado Axis2.
-* **run.sh**: Script bash que gestiona la practica, diseñado para los que no hacen la practica en la maquina virtual, si no en su propio equipo. Actualmente solo funciona correctamente. el comando, '-up', que despliga el servicio en tomcat para directamente lanzar las pruebas, y el '-ent' que crea el fichero .rar acto para la entrega.
-* **runMV.sh**: Script igual que el anterior, pero diseñado para la gente que hace las practica en la maquina vritual. Actualmente solo funciona correctamente. el comando, '-up', que despliga el servicio en tomcat para directamente lanzar las pruebas, y el '-ent' que crea el fichero .rar acto para la entrega.
+* **run.sh**: Script bash que gestiona la practica, diseñado para los que no hacen la practica en la maquina virtual, si no en su propio equipo.
+    * CUIDADO: por que hay que en el caso de que se use este script en vez del siguiente, hay que cambiar algunas cosas
+* **runMV.sh**: Script igual que el anterior, pero diseñado para la gente que hace las practica en la maquina vritual.
+
+> NOTA: Tanto para el 'run.sh' y para el 'runMV.sh', actualmente solo funciona correctamente:
+* '-h': Que muestran el uso del script.
+* '-up' o '--desplegar': que despliga el servicio en tomcat para directamente lanzar las pruebas.
+* '-sd' o '--apagar': que despliga el servicio en tomcat para directamente lanzar las prueba
+* '-ent' o '--entrega': que crea el fichero .rar acto para la entrega.
 
 
 ## run.sh y runMV.sh
-> CUDIADO: El código del script no está depurado completamente y hay que cambiar algunas cosas antes de ejecutar, principalmente variables con tus directorios, mirar los comentarios con '@CHANGE'.
-
-### Inicio
 
 > NOTA: si se hace la práctica en la máquina virtual, donde aparezca run.sh, hay poner runMV.sh.
+
+> CUDIADO: El código de ambos scripts no están depurados completamentes, tratarlos con cautela. Se adminten pulls ;).
+
+> CUIDADO: si se usa el script 'run.sh' hay que cambiar algunas cosas antes de ejecutar, principalmente variables con los dirrectorios que usted esté utilizando. Mirar todo el código.
+
+### Inicio
 
 * Dar permisos de ejecución al fichero 'run.sh', mediante el siguiente comando en una terminal de bash.
 
