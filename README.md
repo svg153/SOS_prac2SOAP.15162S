@@ -37,10 +37,12 @@ Si no se tienen tiene que instalarlas por su cuenta:
 * **runMV.sh**: Script igual que el anterior, pero diseñado para la gente que hace las practica en la maquina vritual.
 
 > NOTA: Tanto para el 'run.sh' y para el 'runMV.sh', actualmente solo funciona correctamente:
-* '-h': Que muestran el uso del script.
-* '-up' o '--desplegar': que despliga el servicio en tomcat para directamente lanzar las pruebas.
-* '-sd' o '--apagar': que despliga el servicio en tomcat para directamente lanzar las prueba
-* '-ent' o '--entrega': que crea el fichero .rar acto para la entrega.
+* '-h': muestra el uso del script.
+* '-v' o '--version': muestra la version del script
+* '-u' o '--update': actualiza el script a la ultima version que esta en github.
+* '-up' o '--desplegar': despliga el servicio en tomcat para directamente lanzar las pruebas.
+* '-sd' o '--apagar': apaga el servicio de tomcat
+* '-ent' o '--entrega': crea el fichero .rar acto para la entrega.
 
 
 ## run.sh y runMV.sh
