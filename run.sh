@@ -69,6 +69,15 @@ function actualizar {
 	fi
 }
 
+function print_version_corta {
+	printf "\n$NAME ${bold}v$VERSION${normal}. LastUpdate:$(date -r $NAME). By $AUTHOR.\n\n"
+}
+
+function print_version {
+	printf "\n${bold}$NAME version:${normal} $VERSION.\n\n"
+	printf "${bold}Last updated:${normal} $(date -r $NAME).\n\n"
+	printf "${bold}Author:${normal} $AUTHOR.\n\n"
+}
 
 function print_nombre {
 	printf "${bold} $NAME ${normal} \n"
@@ -277,26 +286,23 @@ case "$1" in
     	exit 0
         ;;
     "$HELP")
+#@TODO: Hacer la funcion
     	mostrar_ayuda
     	exit 0
         ;;
     "$V")
-#@TODO: Hacer la funcion
-    	mostrar_uso
+    	print_version_corta
     	exit 0
         ;;
     "$VER")
-#@TODO: Hacer la funcion
-    	mostrar_ayuda
+    	print_version
     	exit 0
         ;;
     "$U")
-#@TODO: Hacer la funcion
     	actualizar
     	exit 0
         ;;
     "$UPD")
-#@TODO: Hacer la funcion
     	actualizar
     	exit 0
         ;;
