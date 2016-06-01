@@ -22,11 +22,58 @@ Implementar el servicio y el cliente partiendo del WSDL.
 * Ant 1.9.4
 * Tomcat 7.0.59
 * Axis2-1.6.2
+* rar
 
 ## Archivos de la carpeta
-* *UserManagement.wsdl*: Con la descripción del servicio.
-* *UserManagementWSClient.java*: Código con el cliente que prueba el servicio.
-* *generateStub.sh*: Script bash que genera el codigo del cliente, partiendo del *UserManagement.wsdl* que se tiene que encontrar en la misma carpeta y teniendo instalado Axis2.
+* **UserManagement.wsdl**: Con la descripción del servicio.
+* **UserManagementWSClient.java**: Código con el cliente que prueba el servicio.
+* **generateStub.sh**: Script bash que genera el codigo del cliente, partiendo del *UserManagement.wsdl* que se tiene que encontrar en la misma carpeta y teniendo instalado Axis2.
+* **run.sh**: Script bash que gestiona la practica.  Actualmente solo funciona correctamente. el comando, '-up', que despliga el servicio en tomcat para directamente lanzar las pruebas, y el '-ent' que crea el fichero .rar acto para la entrega.
+
+## run.sh
+> CUDIADO: El código del script no está depurado completamente y hay que cambiar algunas cosas antes de ejecutar, principalmente variables con tus directorios, mirar los comentarios con '@CHANGE'.
+
+### Inicio
+* Dar permisos de ejecución al fichero 'run.sh', mediante el siguiente comando en una terminal de bash.
+    ```bash
+    chmod +x run.sh
+    ```
+* El script tiene que estar en la misma carpeta donde se encuentre las carpetas del 'Cliente' y 'Servicio'.
+
+### Desplegar el servicio en tomcat
+1. Ejecutar en una terminal el siguiente comando de Bash:
+    ```bash
+    ./run.sh -up
+    ```
+2. Esperar a que en la terminal, aparezca 'BUILD SUCCESSFUL'. En tal caso es que Axis2 ha podido generar el fichero 'UserManagementWS.aar' correctamente. En el caso de que no aparezca, es que hay un error de codigo en el servicio.
+
+3. Sacar una terminar para ver el log de CATALINA, mediante el siguiente comando de Bash y esperar a que aparezca 'INFO: Server startup in XXXX ms'. En tal caso es qeu se ha podido desplegar el servicio correctamente.
+    ```bash
+    tail -f --lines=20 $CATALINA_HOME/logs/catalina.out
+    ```
+
+4. Ejecutar el fichero de pruebas del cliente 'UserManagementWSClient.java' como una aplicación de Java normal.
+
+5. Observar tanto el log de la consola del cliente al ejecutar el codigo java, como la terminal del log de CATALINA, para ver los errores del sevidor.
+
+### Crear el fichero de entrega
+
+Para crear el fichero de entrega se necesita tener instalado la apliccacion 'rar' para poder crear ficheros comprimidos '.rar'. Para instalarla ejecuta el siguiente comando dando permisos de superusuario.
+```bash
+sudo apt-get install rar
+```
+Una vez instalado, se ejecuta el script de la siguiente manera:
+```bash
+./run.sh -ent
+```
+Se pedirá el primer apellido de cada autor del codigo, ya que asi es como lo quieren en la asignatura.
+```bash
+$ ./run.sh -ent
+Introduccior el primer apellido de cada autor. Ejemplo: Pepe Garcia y Jose Perez --> garciaperez
+pepe
+```
+Una vez puesto el nombre, se creará un fichero 'NOMBREDADO.rar' en la misma carpeta que se encuentre el script.
+
 
 
 [2]: https://github.com/roberseik
