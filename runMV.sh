@@ -5,7 +5,7 @@
 # >>>>>>> VAR SCRIPTS
 ################################################
 
-VERSION=0.1
+VERSION=0.3
 NAME=$(basename $0)
 NM=$0
 AUTHOR="@svg153 (based on garquiscript.sh by @mrgarri)"
