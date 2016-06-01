@@ -11,11 +11,11 @@ Cliente de la práctica 2 (Curso 2015-2016, 2º Semestre) de Sistemas Orientados
 | Proyecto    | Practica 2, SOAP
 
 ## Autores
-*	Roberto Fernández, [roberseik][2]
+* Roberto Fernández, [roberseik][2]
 * Sergio Valverde, [@svg153][3]
 
 ## Descripción de la práctica
-Implementar el servicio y el cliente partiendo del WSDL.
+Implementar el servicio y el cliente partiendo del WSDL dado para la practica de la asignatura.
 
 ## Dependencias
 * JDK1.7.0_75
@@ -24,17 +24,24 @@ Implementar el servicio y el cliente partiendo del WSDL.
 * Axis2-1.6.2
 * rar
 
+
 ## Archivos de la carpeta
 * **UserManagement.wsdl**: Con la descripción del servicio.
 * **UserManagementWSClient.java**: Código con el cliente que prueba el servicio.
 * **generateStub.sh**: Script bash que genera el codigo del cliente, partiendo del *UserManagement.wsdl* que se tiene que encontrar en la misma carpeta y teniendo instalado Axis2.
-* **run.sh**: Script bash que gestiona la practica.  Actualmente solo funciona correctamente. el comando, '-up', que despliga el servicio en tomcat para directamente lanzar las pruebas, y el '-ent' que crea el fichero .rar acto para la entrega.
+* **run.sh**: Script bash que gestiona la practica, diseñado para los que no hacen la practica en la maquina virtual, si no en su propio equipo. Actualmente solo funciona correctamente. el comando, '-up', que despliga el servicio en tomcat para directamente lanzar las pruebas, y el '-ent' que crea el fichero .rar acto para la entrega.
+* **runMV.sh**: Script igual que el anterior, pero diseñado para la gente que hace las practica en la maquina vritual. Actualmente solo funciona correctamente. el comando, '-up', que despliga el servicio en tomcat para directamente lanzar las pruebas, y el '-ent' que crea el fichero .rar acto para la entrega.
 
-## run.sh
+
+## run.sh y runMV.sh
 > CUDIADO: El código del script no está depurado completamente y hay que cambiar algunas cosas antes de ejecutar, principalmente variables con tus directorios, mirar los comentarios con '@CHANGE'.
 
 ### Inicio
+
+> NOTA: si se hace la práctica en la máquina virtual, donde aparezca run.sh, hay poner runMV.sh.
+
 * Dar permisos de ejecución al fichero 'run.sh', mediante el siguiente comando en una terminal de bash.
+
     ```bash
     chmod +x run.sh
     ```
@@ -42,6 +49,7 @@ Implementar el servicio y el cliente partiendo del WSDL.
 
 ### Desplegar el servicio en tomcat
 1. Ejecutar en una terminal el siguiente comando de Bash:
+
     ```bash
     ./run.sh -up
     ```
@@ -68,11 +76,12 @@ Una vez instalado, se ejecuta el script de la siguiente manera:
 ```
 Se pedirá el primer apellido de cada autor del codigo, ya que asi es como lo quieren en la asignatura.
 ```bash
+# Ejemplo
 $ ./run.sh -ent
 Introduccior el primer apellido de cada autor. Ejemplo: Pepe Garcia y Jose Perez --> garciaperez
 pepe
 ```
-Una vez puesto el nombre, se creará un fichero 'NOMBREDADO.rar' en la misma carpeta que se encuentre el script.
+Una vez puesto el nombre, se creará un fichero 'NOMBREDADO.rar', (en el ejemplo: 'pepe.rar') en la misma carpeta donde se encuentra el script.
 
 
 
