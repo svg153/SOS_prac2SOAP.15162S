@@ -15,7 +15,7 @@ Cliente de la práctica 2 (Curso 2015-2016, 2º Semestre) de Sistemas Orientados
 * Sergio Valverde, [@svg153][3]
 
 ## Descripción de la práctica
-Implementar el servicio y el cliente partiendo del WSDL dado para la practica de la asignatura.
+Implementar el servicio y el cliente partiendo del WSDL dado para la práctica de la asignatura.
 
 ## Dependencias
 Si no se tienen tiene que instalarlas por su cuenta:
