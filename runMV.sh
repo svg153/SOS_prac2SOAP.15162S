@@ -123,8 +123,6 @@ ENTREGA="--entrega"
 
 PATHBASE=/home/lsduser/software2015_linux
 
-
-JRE_HOME=/usr/lib/jvm/java-8-oracle/jre
 ANT_HOME=${PATHBASE}/apache-ant-1.9.7
 
 
@@ -146,24 +144,15 @@ WAR_AXIS2=${AXIS2_HOME}/dist/axis2.war
 export TOM_UP=${TOM_UP}
 export TOM_DW=${TOM_DW}
 
-# export PATH=${JAVA_HOME}/bin:${PATH}
-# export PATH=${JAVA_HOME}/bin:${ANT_HOME}/bin:${PATH}
-# export PATH=${JAVA_HOME}/bin:${CATALINA_HOME}/bin:${PATH}
-# export PATH=${JAVA_HOME}/bin:${AXIS2_HOME}/bin:${PATH}
-
-# Ya estan en el PATH
-#TODO no añadir si ya estan
-# export PATH=$PATH:${JAVA_HOME}
-# export PATH=$PATH:${ANT_HOME}/bin
-# export PATH=$PATH:${CATALINA_HOME}/bin
-# export PATH=$PATH:${AXIS2_HOME}/bin
-
 # Creamos las varibles aqui para que tengan ambito global
 WSDL_PATH=""
 JAVA_PROYECT_PATH=""
 JAVA_NAME=""
 ARR_PATH=""
 
+
+CLIENTE_FOLDER="cliente"
+SERVICIO_FOLDER="servicio"
 
 
 function texto_uso {
@@ -202,8 +191,8 @@ function wsdl2java_func {
 
 	cd $JAVA_PROYECT_PATH
 	$AXIS2_HOME/bin/wsdl2java.sh -s -ss -sd -wv 2.0 -p $JAVA_PROYECT_PATH/$JAVA_NAME -d adb -uri $WSDL_PATH
-#   /home/svg153/PROGRAMAS/axis2-1.7.1
-#	/home/svg153/PROGRAMAS/axis2-1.7.1/bin/wsdl2java.sh -s -ss -sd -wv 2.0 -p userManagement -d adb -uri UserManagement.wsdl
+#	$AXIS2_HOME/bin/wsdl2java.sh -s -ss -sd -wv 2.0 -p userManagement -d adb -uri UserManagement.wsdl
+
     #TODO: control de errores de AXIS" wsdl2java.sh
 #    printf "Make '${bold}$JAVA_NAME${normal}' in path '${bold}$JAVA_PROYECT_PATH${normal}'\n"
     cd $CUR_DIR
@@ -322,9 +311,9 @@ case "$1" in
 #        fi
 
         JAVA_NAME="UserManagementWS"
-        ARR_PATH="/home/lsduser/workspace/Servicio/build/lib/$JAVA_NAME.aar"
+        ARR_PATH="/home/lsduser/workspace/$SERVICIO_FOLDER/build/lib/$JAVA_NAME.aar"
 
-        cd Servicio
+        cd $SERVICIO_FOLDER
         rm ARR_PATH
         echo "Crearmos el fichero echo '$JAVA_NAME.aar'"
         ant
@@ -354,14 +343,15 @@ case "$1" in
 #            echo $LOG
 #        fi
 
-# ping http://localhost:8080/axis2/services/listServices
+#       
+#       ping http://localhost:8080/axis2/services/listServices
 
         # Ejercutar el JAVA del cliente
-        cd Cliente
+        # cd $CLIENTE_FOLDER
         # javac
 
 
-        cd ..
+        # cd ..
         exit 0
         ;;
      "$SDW" | "$APAGAR")
@@ -389,14 +379,14 @@ case "$1" in
         mkdir $NAMEENTREGA
 
         JAVA_NAME="UserManagementWS"
-        ARR_PATH="/home/lsduser/workspace/Servicio/build/lib/$JAVA_NAME.aar"
+        ARR_PATH="/home/lsduser/workspace/$SERVICIO_FOLDER/build/lib/$JAVA_NAME.aar"
         cp $ARR_PATH ./$NAMEENTREGA/$JAVA_NAME.aar
 
         # @CHANGE: por otro user
-        cp -r ./Servicio ./$NAMEENTREGA/servicio
-        cp -r ./Cliente ./$NAMEENTREGA/cliente
+        cp -r ./$SERVICIO_FOLDER ./$NAMEENTREGA/servicio
+        cp -r ./$CLIENTE_FOLDER ./$NAMEENTREGA/cliente
 
-        cp /home/lsduser/workspace/Servicio/src/UserManagement/UserManagementWSSkeleton.java ./$NAMEENTREGA/UserManagementWSSkeleton.java
+        cp /home/lsduser/workspace/$SERVICIO_FOLDER/src/UserManagement/UserManagementWSSkeleton.java ./$NAMEENTREGA/UserManagementWSSkeleton.java
 
         rm "$NAMEENTREGA.rar"
 
