@@ -28,6 +28,17 @@ Si no se tienen tiene que instalarlas por su cuenta:
 ## TODOs
 * Muchos...
 
+## Configuración inicial
+El Workspace se tiene que configurar de la siguiente manera.
+* Servidor:
+    * Crear un proyecto JAVA con el nombre 'servicio'.
+    * Poner el fichero WSDL con la descripción del servicio en la carpeta 'servicio' anteriormente creada.
+    * Crear el skeleton a partir del WSDL y el script wsdl2java.sh de la siguiente manera: "".
+    * Añadir todas las librerias de la carpeta lib de Axis2 al proyecto.
+    * Añadir el 'scope="soapsession"', al fichero 'services.xml'.
+* Cliente:
+    * Crear un proyecto JAVA
+
 ## Archivos de la carpeta
 * **UserManagement.wsdl**: Con la descripción del servicio.
 * **UserManagementWSClient.java**: Código con el cliente que prueba el servicio.
